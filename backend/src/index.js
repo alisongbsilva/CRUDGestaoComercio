@@ -11,7 +11,10 @@ app.use(express.json());
 //Rotas
 const empresaRoutes = require("./routes/empresa.routes");
 app.use("/empresas", empresaRoutes);
+const clienteRoutes = require("./routes/cliente.routes");
+app.use("/clientes", clienteRoutes);
 
+// Status temporário da API
 app.get("/", (req, res) => {
     res.send("API está funcionando!");
 });
