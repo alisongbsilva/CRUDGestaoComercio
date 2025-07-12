@@ -13,6 +13,8 @@ const empresaRoutes = require("./routes/empresa.routes");
 app.use("/empresas", empresaRoutes);
 const clienteRoutes = require("./routes/cliente.routes");
 app.use("/clientes", clienteRoutes);
+const produtoRoutes = require("./routes/produto.routes");
+app.use("/produtos", produtoRoutes);
 
 // Status temporário da API
 app.get("/", (req, res) => {
