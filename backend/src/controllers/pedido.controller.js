@@ -1,6 +1,17 @@
 const Pedido = require("../models/pedido.model");
 const Produto = require("../models/produto.model");
 
+// Retornar somente a data atual
+function dataAtual() {
+    const hoje = new Date();
+    const dia = hoje.getDate();
+    const mes = hoje.getMonth() + 1;
+    const ano = hoje.getFullYear();
+
+    data = `${ano}-${mes}-${dia}`;
+    return data;
+}
+
 // Criar pedido
 exports.criarPedido = async (req, res) => {
     try {
@@ -32,7 +43,7 @@ exports.criarPedido = async (req, res) => {
             produtos: produtosList,
             total,
             observacoes: req.body.observacoes || "",
-            dataPedido: new Date(),
+            dataPedido: dataAtual(),
         });
 
             await pedido.save();
