@@ -53,3 +53,55 @@ exports.criarPedido = async (req, res) => {
             res.status(400).json({ erro: err.message });
         }
 };
+
+// Listar pedidos
+exports.listarPedidos = async (req, res) => {
+    try {
+        const pedidos = await Pedido.find()
+            .populate("clienteId")
+            .populate("empresaId")
+            .populate("produtos.produtoId");
+        res.json(pedidos);
+    } catch (err) {
+        res.status(500).json({ erro: err.message });
+    }
+};
+
+// Buscar pedido por ID
+exports.buscarPedidoPorId = async (req, res) => {
+    try {
+        const pedido = await Pedido.findById(req.params.id)
+            .populate("clienteId")
+            .populate("empresaId")
+            .populate("produtos.produtoId");
+        if (!pedido) return res.status(404).json({ erro: "Pedido não encontrado!" });
+        res.json(pedido);
+    } catch (err) {
+        res.status(500).json({ erro: err.message});
+    }
+};
+
+// Atualizar pedido
+exports.atualizarPedido = async (req, res) => {
+    try {
+        const pedido = await Pedido.findByIdAndUpdate(req.params.id, {
+            produtos: req.body.produtos,
+            observacoes: req.body.observacoes || "",
+        }, { new: true });
+        if (!pedido) return res.status(404).json({ erro: "Pedido não encontrado!"});
+        res.json(pedido);
+    } catch (err) {
+        res.status(400).json({ erro: err.message });
+    }
+};
+
+// Remover pedido
+exports.removerPedido = async (req, res) => {
+    try {
+        const pedido = await Pedido.findByIdAndDelete(req.params.id);
+        if (!pedido) return res.status(404).json({ erro: "Pedido não encontrado!" });
+        res.json({ mensagem: "Pedido removido com sucesso!" });
+    } catch (err) {
+        res.status(500).json({ erro: err.message });
+    }
+};
