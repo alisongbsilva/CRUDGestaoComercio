@@ -17,6 +17,8 @@ const produtoRoutes = require("./routes/produto.routes");
 app.use("/produtos", produtoRoutes);
 const pedidoRoutes = require("./routes/pedido.routes");
 app.use("/pedidos", pedidoRoutes);
+const usuarioRoutes = require("./routes/usuario.routes");
+app.use(usuarioRoutes);
 
 // Status temporário da API
 app.get("/", (req, res) => {
