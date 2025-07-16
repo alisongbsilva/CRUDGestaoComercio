@@ -11,7 +11,14 @@ app.use(express.json());
 //Rotas
 const empresaRoutes = require("./routes/empresa.routes");
 app.use("/empresas", empresaRoutes);
+const clienteRoutes = require("./routes/cliente.routes");
+app.use("/clientes", clienteRoutes);
+const produtoRoutes = require("./routes/produto.routes");
+app.use("/produtos", produtoRoutes);
+const pedidoRoutes = require("./routes/pedido.routes");
+app.use("/pedidos", pedidoRoutes);
 
+// Status temporário da API
 app.get("/", (req, res) => {
     res.send("API está funcionando!");
 });
