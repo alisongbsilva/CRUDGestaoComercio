@@ -12,16 +12,24 @@ cd CRUDGestaoComercio/backend
 ```bash
 npm install
 ```
+### 3. Instale o MongoDB Compass
+Após a instalação, configure uma nova conexão e conecte a ela, por padrão na URI "mongodb://localhost:27017"
 
-### 3. Configure as variáveis de ambiente
-Crie um arquivo `.env` na pasta `backend` com base no arquivo `env.example` e preencha os valores necessários.
+### 4. Configure as variáveis de ambiente
+Crie um arquivo `.env` na pasta `backend` com o seguinte conteúdo (ajuste conforme necessário):
 
-### 4. Execute o backend
+```env
+PORT=3000
+MONGODB_URI=mongodb://localhost:27017/gestao_comercio
+JWT_SECRET=VENDERGAS
+```
+
+### 5. Execute o backend
 ```bash
 npm start
 ```
 
-O backend estará rodando normalmente na porta configurada no seu `.env` (por padrão, 3000).
+O backend estará rodando na porta definida no seu `.env` (por padrão, 3000).
+O nome do DB criado conforme o ".env" será "gestão_comercio".
 
 ---
-Sinta-se à vontade para contribuir ou abrir issues!

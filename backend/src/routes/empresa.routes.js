@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const empresaController = require("../controllers/empresa.controller");
+const auth = require("../middlewares/auth");
 
-//Rotas públicas
-router.post("/", empresaController.criarEmpresa);
-router.get("/", empresaController.listarEmpresas);
-router.get("/:id", empresaController.buscarEmpresaPorId);
-router.put("/:id", empresaController.atualizarEmpresa);
-router.delete("/:id", empresaController.removerEmpresa);
+router.post("/", auth, empresaController.criarEmpresa);
+router.get("/", auth, empresaController.listarEmpresas);
+router.get("/:id", auth, empresaController.buscarEmpresaPorId);
+router.put("/:id", auth, empresaController.atualizarEmpresa);
+router.delete("/:id", auth, empresaController.removerEmpresa);
 
 module.exports = router;
