@@ -4,13 +4,15 @@ import { AuthService } from './auth';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-
+import { NotificationService } from './notification';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
   const router = inject(Router);
   const token = authService.getToken();
   
+  const notify = inject(NotificationService);
+
   const clonedReq = token ? req.clone({
     setHeaders: { Authorization: `Bearer ${token}`}
   }) : req;
@@ -22,13 +24,13 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
           case 401:
             authService.logout();
             router.navigate(['/login']);
-            alert('Sessão expirada. Por favor, faça login novamente.');
+            notify.show('Sessão expirada. Por favor, faça login novamente.');
             break;
           case 403:
-            alert('Acesso negado. Você não tem permissão para acessar este recurso.');
+            notify.show('Acesso negado. Você não tem permissão para acessar este recurso.');
             break;
           case 500:
-            alert('Erro interno do servidor. Por favor, tente novamente mais tarde.');
+            notify.show('Erro interno do servidor. Por favor, tente novamente mais tarde.');
             break;
         }
       }
