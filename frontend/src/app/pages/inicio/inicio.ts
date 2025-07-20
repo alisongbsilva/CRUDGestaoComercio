@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../core/auth.service';
+import { NotificationService } from '../../core/notification';
 
 @Component({
   selector: 'app-inicio',
@@ -7,5 +10,14 @@ import { Component } from '@angular/core';
   styleUrl: './inicio.scss'
 })
 export class InicioComponent {
+  constructor(
+      private auth: AuthService,
+      private router: Router,
+      private notify: NotificationService
+    ) {}
 
+  irParaEmpresas() {
+    this.router.navigate(['/empresas']);
+  }
+  
 }

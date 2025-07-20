@@ -13,7 +13,11 @@ const routes: Routes = [
     canActivateChild: [authGuard],
     children: [
       { path: 'inicio', component: InicioComponent },
-      { path: '', redirectTo: 'inicio', pathMatch: 'full' }
+      {
+        path: 'empresas',
+        loadChildren: () => import('./pages/empresas/empresas.module').then(m => m.EmpresasModule)
+      },
+      //{ path: '', redirectTo: 'inicio', pathMatch: 'full' }
     ]
   },
   

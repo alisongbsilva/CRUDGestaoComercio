@@ -20,7 +20,7 @@ import { InicioComponent } from './pages/inicio/inicio';
     App,
     LoginComponent,
     CadastroComponent,
-    InicioComponent
+    InicioComponent,
   ],
   imports: [
     HttpClientModule,
