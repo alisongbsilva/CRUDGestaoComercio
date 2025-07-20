@@ -14,10 +14,16 @@ export class AuthService {
       tap((res: any) => {
       if (res && res.token) {
         this.saveToken(res.token);
+        localStorage.setItem('usuario', JSON.stringify(res.usuario));
       }
       }),
       catchError(this.handleError)
     );
+  }
+  
+
+  cadastrarUsuario(dados: { nome: string; email: string; senha: string }): Observable<any> {
+    return this.http.post(`${this.API_URL}/usuarios`, dados);
   }
 
   saveToken(token: string): void {

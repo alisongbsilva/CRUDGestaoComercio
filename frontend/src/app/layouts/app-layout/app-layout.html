@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+  <span class="app-title">Gestão de Comércio</span>
+
+  <span class="spacer"></span>
+
+  <span *ngIf="nomeUsuario" class="user-name">
+    Olá, {{ nomeUsuario }}
+  </span>
+
+  <button mat-icon-button (click)="logout()" aria-label="Sair">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="app-container">
+  <router-outlet></router-outlet>
+</div>

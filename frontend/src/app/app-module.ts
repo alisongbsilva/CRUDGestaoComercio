@@ -12,7 +12,8 @@ import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { LoginComponent } from './pages/auth/login/login';
 import { CadastroComponent } from './pages/auth/cadastro/cadastro';
-import { InicioComponent } from './pages/inicio/inicio';;
+import { InicioComponent } from './pages/inicio/inicio';
+;
 
 @NgModule({
   declarations: [
