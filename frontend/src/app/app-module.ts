@@ -1,32 +1,37 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { authInterceptor } from './core/auth-interceptor';
-
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './core/auth-interceptor';
+
+import { MaterialModule } from './material.module';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
-import { Login } from './pages/auth/login/login';
-import { Register } from './pages/auth/register/register';
+import { LoginComponent } from './pages/auth/login/login';
+import { CadastroComponent } from './pages/auth/cadastro/cadastro';
+import { InicioComponent } from './pages/inicio/inicio';;
 
 @NgModule({
   declarations: [
     App,
-    Login,
-    Register
+    LoginComponent,
+    CadastroComponent,
+    InicioComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
     AppRoutingModule,
-    MatSnackBarModule,
-    BrowserAnimationsModule
+    MaterialModule,
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
-    { provide: HTTP_INTERCEPTORS, useValue: authInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [App]
 })

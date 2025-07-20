@@ -1,1 +1,16 @@
-<p>login works!</p>
+<div class=""login-container>
+    <h2>Login</h2>
+    <form (ngSubmit)="login()" #form="ngForm">
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" name="email" [(ngModel)]="email" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Senha</mat-label>
+            <input matInput type="password" name="senha" [(ngModel)]="senha" required>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Entrar</button>
+    </form>
+</div>
