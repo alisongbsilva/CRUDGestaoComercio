@@ -52,4 +52,9 @@ export class EmpresasIndexComponent implements OnInit {
       });
     }
   }
+
+  irParaInicio() {
+    this.router.navigate(['/inicio']);
+  }
+
 }
