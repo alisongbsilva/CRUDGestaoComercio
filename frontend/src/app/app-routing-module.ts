@@ -17,6 +17,10 @@ const routes: Routes = [
         path: 'empresas',
         loadChildren: () => import('./pages/empresas/empresas.module').then(m => m.EmpresasModule)
       },
+      {
+        path: 'clientes',
+        loadChildren: () => import('./pages/clientes/clientes.module').then(m => m.ClientesModule)
+      },
       { path: '', redirectTo: 'inicio', pathMatch: 'full' }
     ]
   },

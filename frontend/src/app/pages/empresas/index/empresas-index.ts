@@ -35,11 +35,11 @@ export class EmpresasIndexComponent implements OnInit {
     this.snackbar.open('Abrir formulário (em breve)', '', { duration: 2000 });
   }
 
-  adicionarEmpresa() {
+  adicionar() {
     this.router.navigate(['/empresas/adicionar']);
   }
 
-  editarEmpresa(id: string) {
+  editar(id: string) {
     // abrir modal ou form com dados
     this.router.navigate(['/empresas/editar', id]);
   }

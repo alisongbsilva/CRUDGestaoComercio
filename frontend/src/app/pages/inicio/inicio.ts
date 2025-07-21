@@ -19,5 +19,9 @@ export class InicioComponent {
   irParaEmpresas() {
     this.router.navigate(['/empresas']);
   }
-  
+
+  irParaClientes() {
+    this.router.navigate(['/clientes']);
+  }
+
 }

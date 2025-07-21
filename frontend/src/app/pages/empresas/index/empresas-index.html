@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-title>Empresas</mat-card-title>
   <mat-card-content>
-    <button mat-raised-button color="primary" (click)="adicionarEmpresa()">Adicionar Empresa</button>
+    <button mat-raised-button color="primary" (click)="adicionar()">Adicionar Empresa</button>
 
     <table mat-table [dataSource]="empresas" class="mat-elevation-z8 mt-3" *ngIf="empresas.length">
       <ng-container matColumnDef="nomeFantasia">
@@ -20,7 +20,7 @@
       <ng-container matColumnDef="acoes">
         <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let empresa">
-          <button mat-icon-button color="accent" (click)="editarEmpresa(empresa._id)">
+          <button mat-icon-button color="accent" (click)="editar(empresa._id)">
             <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button color="warn" (click)="excluir(empresa._id)">
