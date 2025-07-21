@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmpresasService } from '../../../services/empresas/empresas.service';
 import { Empresas } from '../../../core/models/empresas/empresas.model';
+import { NotificationService } from '../../../core/notification';
 
 @Component({
   selector: 'app-empresas-edit',
@@ -19,7 +20,8 @@ export class EmpresasEditComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private service: EmpresasService
+    private service: EmpresasService,
+    private notify: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -40,16 +42,21 @@ export class EmpresasEditComponent implements OnInit {
   }
 
   salvar() {
-    if (this.formEmpresas.invalid) return;
+    if (this.formEmpresas.invalid) {
+      this.notify.show('Dados inválidos!');
+      return;
+    }
 
     const dados = this.formEmpresas.value;
 
     if (this.isEdit && this.empresaId) {
       this.service.atualizar(this.empresaId, dados).subscribe(() => {
+        this.notify.show('Dados atualizados com sucesso!');
         this.router.navigate(['/empresas']);
       });
     } else {
       this.service.criar(dados).subscribe(() => {
+        this.notify.show('Nova empresa cadastrada com sucesso!');
         this.router.navigate(['/empresas']);
       });
     }
