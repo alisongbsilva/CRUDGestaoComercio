@@ -6,6 +6,8 @@ const routes: Routes = [
     { path: '', 
       children: [
         { path: 'index', loadChildren: () => import('./index/empresas-index.module').then(m => m.EmpresasIndexModule) },
+        { path: 'adicionar', loadChildren: () => import('./edit/empresas-edit.module').then(m => m.EmpresasEditModule) },
+        { path: 'editar/:id', loadChildren: () => import('./edit/empresas-edit.module').then(m => m.EmpresasEditModule) }
       ]
      },
 ];

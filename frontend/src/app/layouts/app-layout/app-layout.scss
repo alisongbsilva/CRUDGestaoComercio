@@ -2,6 +2,16 @@
   font-weight: bold;
 }
 
+.app-container {
+  display:flexbox;
+  flex-direction: column;
+  margin: 2% 15% 2% 15%;
+  align-self: center;
+  vertical-align: center;
+  min-height: 100vh;
+  width: 70%;
+}
+
 .spacer {
   flex: 1 1 auto;
 }

@@ -11,7 +11,7 @@ import { Empresas } from '../../../core/models/empresas/empresas.model';
   styleUrls: ['./empresas-edit.scss']
 })
 export class EmpresasEditComponent implements OnInit {
-  form!: FormGroup;
+  formEmpresas!: FormGroup;
   isEdit = false;
   empresaId: string | null = null;
 
@@ -23,11 +23,10 @@ export class EmpresasEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      nome: ['', Validators.required],
-      cnpj: [''],
-      endereco: [''],
-      telefone: ['']
+    this.formEmpresas = this.fb.group({
+      nomeFantasia: ['', Validators.required],
+      razaoSocial: ['', Validators.required],
+      cnpj: ['', Validators.required],
     });
 
     this.empresaId = this.route.snapshot.paramMap.get('id');
@@ -35,15 +34,15 @@ export class EmpresasEditComponent implements OnInit {
 
     if (this.isEdit && this.empresaId) {
       this.service.obterPorId(this.empresaId).subscribe((empresa: Empresas) => {
-        this.form.patchValue(empresa);
+        this.formEmpresas.patchValue(empresa);
       });
     }
   }
 
   salvar() {
-    if (this.form.invalid) return;
+    if (this.formEmpresas.invalid) return;
 
-    const dados = this.form.value;
+    const dados = this.formEmpresas.value;
 
     if (this.isEdit && this.empresaId) {
       this.service.atualizar(this.empresaId, dados).subscribe(() => {
