@@ -3,6 +3,7 @@ import { EmpresasService } from '../../../services/empresas/empresas.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Empresas } from '../../../core/models/empresas/empresas.model';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../../core/notification';
 
 @Component({
   selector: 'app-empresas-index',
@@ -17,7 +18,8 @@ export class EmpresasIndexComponent implements OnInit {
   constructor(
     private service: EmpresasService,
     private snackbar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private notify: NotificationService
   ) {}
 
   ngOnInit() {
@@ -33,11 +35,11 @@ export class EmpresasIndexComponent implements OnInit {
     this.snackbar.open('Abrir formulário (em breve)', '', { duration: 2000 });
   }
 
-  adicionarEmpresa() {
+  adicionar() {
     this.router.navigate(['/empresas/adicionar']);
   }
 
-  editarEmpresa(id: string) {
+  editar(id: string) {
     // abrir modal ou form com dados
     this.router.navigate(['/empresas/editar', id]);
   }
@@ -45,9 +47,14 @@ export class EmpresasIndexComponent implements OnInit {
   excluir(id: string) {
     if (confirm('Tem certeza que deseja excluir?')) {
       this.service.excluir(id).subscribe(() => {
-        this.snackbar.open('Empresa excluída', '', { duration: 2000 });
+        this.notify.show('Empresa removida com sucesso!');
         this.listar();
       });
     }
   }
+
+  irParaInicio() {
+    this.router.navigate(['/inicio']);
+  }
+
 }

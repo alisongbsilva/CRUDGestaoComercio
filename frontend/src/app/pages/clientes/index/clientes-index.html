@@ -1,0 +1,41 @@
+<mat-card>
+  <mat-card-title>Clientes</mat-card-title>
+  <mat-card-content>
+    <button mat-raised-button color="primary" (click)="adicionar()">Adicionar Cliente</button>
+
+    <table mat-table [dataSource]="clientes" class="mat-elevation-z8 mt-3" *ngIf="clientes.length">
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef>Nome</th>
+        <td mat-cell *matCellDef="let cliente">{{ cliente.nome }}</td>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>E-mail</th>
+        <td mat-cell *matCellDef="let cliente">{{ cliente.email }}</td>
+      </ng-container>
+      <ng-container matColumnDef="telefone">
+        <th mat-header-cell *matHeaderCellDef>Telefone</th>
+        <td mat-cell *matCellDef="let cliente">{{ cliente.telefone }}</td>
+      </ng-container>
+      <ng-container matColumnDef="empresaId">
+        <th mat-header-cell *matHeaderCellDef>Empresa</th>
+        <td mat-cell *matCellDef="let cliente">{{ cliente.empresaId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef>Ações</th>
+        <td mat-cell *matCellDef="let cliente">
+          <button mat-icon-button color="accent" (click)="editar(cliente._id)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="excluir(cliente._id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+      <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
+    </table>
+    <button mat-raised-button color="accent" (click)="irParaInicio()">Voltar ao início</button>
+  </mat-card-content>
+</mat-card>
