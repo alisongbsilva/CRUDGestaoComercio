@@ -15,15 +15,13 @@
           <mat-label>Senha</mat-label>
           <input matInput type="password" name="senha" [(ngModel)]="senha" required />
         </mat-form-field>
-
-        <button mat-raised-button color="primary" class="w-100 mt-2" type="submit" [disabled]="form.invalid">
-          Entrar
-        </button>
-
-        <div class="text-center mt-3">
-          <button mat-stroked-button color="accent" (click)="irParaCadastro()">
-            Cadastrar
-          </button>
+        <div class="text-center mt-3 button-group">
+          <div class="text-left">
+            <button mat-raised-button color="primary" (click)="irParaCadastro()">Cadastrar</button>
+          </div>
+          <div class="text-right">
+            <button mat-stroked-button color="accent" class="w-100 mt-2" type="submit" [disabled]="form.invalid">Entrar</button>
+          </div>
         </div>
       </form>
     </mat-card-content>

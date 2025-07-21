@@ -11,3 +11,39 @@
   max-width: 400px;
   padding: 1rem;
 }
+
+mat-card {
+  padding: 1%;
+  margin: 1%;
+}
+
+mat-card-content {
+  padding: 1%;
+  margin: 1%;
+}
+
+button {
+  margin: 1% 1%;
+}
+
+.button-group {
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.button-group .text-left{
+  margin-right: 40%;
+  margin-left: 5%;
+  text-align: left;
+}
+
+.button-group .text-right{
+  margin-left: 40%;
+  margin-right: 3%;
+  text-align: right;
+}
+
+mat-form-field {
+  width: 90%;
+  margin: 0% 5%;
+}
