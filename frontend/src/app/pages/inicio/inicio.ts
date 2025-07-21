@@ -24,4 +24,12 @@ export class InicioComponent {
     this.router.navigate(['/clientes']);
   }
 
+  irParaProdutos() {
+    this.router.navigate(['/produtos']);
+  }
+
+  irParaPedidos() {
+    this.router.navigate(['/pedidos']);
+  }
+
 }

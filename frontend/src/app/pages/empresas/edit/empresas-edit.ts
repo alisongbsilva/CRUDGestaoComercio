@@ -12,7 +12,7 @@ import { NotificationService } from '../../../core/notification';
   styleUrls: ['./empresas-edit.scss']
 })
 export class EmpresasEditComponent implements OnInit {
-  formEmpresas!: FormGroup;
+  form!: FormGroup;
   isEdit = false;
   empresaId: string | null = null;
 
@@ -25,7 +25,7 @@ export class EmpresasEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.formEmpresas = this.fb.group({
+    this.form = this.fb.group({
       nomeFantasia: ['', Validators.required],
       razaoSocial: ['', Validators.required],
       cnpj: ['', Validators.required],
@@ -36,18 +36,18 @@ export class EmpresasEditComponent implements OnInit {
 
     if (this.isEdit && this.empresaId) {
       this.service.obterPorId(this.empresaId).subscribe((empresa: Empresas) => {
-        this.formEmpresas.patchValue(empresa);
+        this.form.patchValue(empresa);
       });
     }
   }
 
   salvar() {
-    if (this.formEmpresas.invalid) {
+    if (this.form.invalid) {
       this.notify.show('Dados inválidos!');
       return;
     }
 
-    const dados = this.formEmpresas.value;
+    const dados = this.form.value;
 
     if (this.isEdit && this.empresaId) {
       this.service.atualizar(this.empresaId, dados).subscribe(() => {
